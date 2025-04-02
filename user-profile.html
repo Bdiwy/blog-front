@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">    
+    <title>Jane Doe - Writeit</title>
+    <style>
+        .navbar {
+            height: 60px;
+            padding: 0.5rem 1rem;
+            overflow: hidden;
+        }
+        .navbar-brand {
+            padding: 0;
+            line-height: 0;
+        }
+        .navbar-brand img {
+            height: 100px;
+            width: auto;
+            position: relative;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="/imgs/logo.png" alt="Writeit Logo" style="height: 100px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- User Profile Section -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="/imgs/avatar/7309681.jpg" class="rounded-circle mb-3" alt="Profile Image" style="width: 150px; height: 150px;">
+                        <h2 class="card-title">Jane Doe</h2>
+                        <p class="card-text text-muted">Member since April 1, 2025</p>
+                        <p class="card-text"><strong>Contact:</strong> jane.doe@example.com</p>
+                        <p class="card-text"><strong>Social:</strong> <a href="#" class="text-success">Twitter</a> | <a href="#" class="text-success">Instagram</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User's Blog Posts -->
+        <h1 class="mb-4 text-center">Jane's Posts</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Post 1 -->
+                <div class="card mb-4">
+                    <img src="/imgs/test.png" class="card-img-top img-fluid mx-auto d-block" alt="Blog Post Image" style="max-width: 50%;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="/imgs/avatar/7309681.jpg" class="rounded-circle me-2" alt="Author Avatar" style="width: 50px; height: 50px;">
+                            <div>
+                                <h2 class="card-title mb-0">First Blog Post</h2>
+                                <small class="text-muted">By Jane Doe - April 1, 2025</small>
+                            </div>
+                        </div>
+                        <p class="card-text">This post now has an image! Bootstrap’s card component is super flexible.</p>
+                        <a href="#" class="btn btn-success">Read More</a>
+                    </div>
+                </div>
+                <!-- Post 2 -->
+                <div class="card mb-4">
+                    <img src="/imgs/hero-section/back.jpg" class="card-img-top img-fluid mx-auto d-block" alt="Blog Post Image" style="max-width: 50%;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="/imgs/avatar/7309681.jpg" class="rounded-circle me-2" alt="Author Avatar" style="width: 50px; height: 50px;">
+                            <div>
+                                <h2 class="card-title mb-0">Exploring Nature</h2>
+                                <small class="text-muted">By Jane Doe - April 2, 2025</small>
+                            </div>
+                        </div>
+                        <p class="card-text">A journey through the wilderness with stunning views.</p>
+                        <a href="#" class="btn btn-success">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-success text-white text-center py-3 mt-5">
+        <p>© 2025 Writeit. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
