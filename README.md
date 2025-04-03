@@ -68,7 +68,7 @@ Released under the **MIT License**. See `LICENSE` for details.
 
 ## 📞 Contact
 
-📧 **Ahmed Bdiwy** - [@bdiwy_](https://twitter.com/bdiwy_) - ahmed@example.com
+📧 **Ahmed Bdiwy** - [@bdiwy_](https://twitter.com/bdiwy_) - deve.ahmed.bdiwy@gmail.com
 
 🔗 **Project Link**: [GitHub Repo](https://github.com/your-username/writeit-frontend)
 
