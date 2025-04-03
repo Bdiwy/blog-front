@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Home</title>
     <style>
         .card {
@@ -47,6 +49,50 @@
             background-color: #146c43;
             color: white;
             border-color: #146c43;
+        }
+        /* Voting System Styles */
+        .vote-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .vote-btn:hover {
+            transform: scale(1.2);
+        }
+        .upvote.active {
+            color: #0d6efd; /* Bootstrap primary blue */
+        }
+        .downvote.active {
+            color: #dc3545; /* Bootstrap danger red */
+        }
+        .share-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .share-btn.active {
+            color: #198754; /* Bootstrap success green */
+        }
+        .vote-count {
+            font-weight: bold;
+            text-align: center;
+            min-width: 20px;
+        }
+        .post-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .card-img-top {
+            max-height: 400px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -127,13 +173,65 @@
                             <img src="/imgs/avatar/7309681.jpg" class="rounded-circle me-2" alt="Author Avatar" style="width: 50px; height: 50px;">
                             <div>
                                 <h2 class="card-title mb-0">First Blog Post</h2>
-                                <small class="text-muted">By Jane Doe</small>
+                                <small class="text-muted">By Jane Doe - April 1, 2025</small>
                             </div>
                         </div>
-                        <p class="card-text">This post now has an image! Bootstrap’s card component is super flexible.</p>
-                        <a href="#" class="btn btn-success">Read More</a>
+                        <p class="card-text">This post now has an image! Bootstrap's card component is super flexible.</p>
+                        
+                        <!-- Post Actions (Voting and Share) -->
+                        <div class="post-actions">
+                            <!-- Upvote Button -->
+                            <button class="vote-btn upvote" onclick="vote(this, 1)">
+                                <i class="bi bi-arrow-up"></i>
+                            </button>
+                            
+                            <!-- Vote Count -->
+                            <span class="vote-count">42</span>
+                            
+                            <!-- Downvote Button -->
+                            <button class="vote-btn downvote" onclick="vote(this, -1)">
+                                <i class="bi bi-arrow-down"></i>
+                            </button>
+                            
+                            <!-- Share Button -->
+                            <button class="share-btn" onclick="sharePost(this)">
+                                <i class="bi bi-repeat"></i> <!-- Using repeat icon for share -->
+                            </button>
+                            
+                            <a href="#" class="btn btn-success ms-auto">Read More</a>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Second Example Post -->
+                <div class="card mb-4">
+                    <img src="/imgs/hero-section/back.jpg" class="card-img-top img-fluid mx-auto d-block" alt="Blog Post Image">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="/imgs/avatar/7309681.jpg" class="rounded-circle me-2" alt="Author Avatar" style="width: 50px; height: 50px;">
+                            <div>
+                                <h2 class="card-title mb-0">Exploring Nature</h2>
+                                <small class="text-muted">By Jane Doe - April 2, 2025</small>
+                            </div>
+                        </div>
+                        <p class="card-text">A journey through the wilderness with stunning views.</p>
+                        
+                        <div class="post-actions">
+                            <button class="vote-btn upvote" onclick="vote(this, 1)">
+                                <i class="bi bi-arrow-up"></i>
+                            </button>
+                            <span class="vote-count">128</span>
+                            <button class="vote-btn downvote" onclick="vote(this, -1)">
+                                <i class="bi bi-arrow-down"></i>
+                            </button>
+                            <button class="share-btn" onclick="sharePost(this)">
+                                <i class="bi bi-repeat"></i>
+                            </button>
+                            <a href="#" class="btn btn-success ms-auto">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Pagination -->
                 <nav aria-label="Blog post pagination">
                     <ul class="pagination justify-content-center">
@@ -157,7 +255,7 @@
             <!-- Sidebar -->
             <div class="col-lg-4">
                 <h3 class="mb-4">About Me</h3>
-                <p>A little about me: I’m learning Bootstrap and building this blog!</p>
+                <p>A little about me: I'm learning Bootstrap and building this blog!</p>
                 <h3 class="mb-4">Categories</h3>
                 <ul class="list-group mb-4">
                     <li class="list-group-item">Tech</li>
@@ -209,6 +307,56 @@
     <footer class="bg-success text-white text-center py-3 mt-4">
         <p>© 2025 Writeit. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Voting functionality
+        function vote(button, direction) {
+            const card = button.closest('.card');
+            const upvoteBtn = card.querySelector('.upvote');
+            const downvoteBtn = card.querySelector('.downvote');
+            const voteCount = card.querySelector('.vote-count');
+            
+            // Get current values
+            let currentVote = button.classList.contains('active') ? 0 : direction;
+            let currentCount = parseInt(voteCount.textContent);
+            
+            // Remove active classes
+            upvoteBtn.classList.remove('active');
+            downvoteBtn.classList.remove('active');
+            
+            // Update based on vote
+            if (currentVote === 1) {
+                upvoteBtn.classList.add('active');
+                voteCount.textContent = currentCount + 1;
+            } else if (currentVote === -1) {
+                downvoteBtn.classList.add('active');
+                voteCount.textContent = currentCount - 1;
+            } else {
+                // If clicking the same button again (undoing vote)
+                if (direction === 1) {
+                    voteCount.textContent = currentCount - 1;
+                } else {
+                    voteCount.textContent = currentCount + 1;
+                }
+            }
+        }
+        
+        // Share functionality
+        function sharePost(button) {
+            button.classList.toggle('active');
+            
+            // Here you would add your actual share functionality
+            // For now, we'll just show an alert
+            alert('Post shared successfully!');
+            
+            // You could replace this with actual share functionality like:
+            // navigator.share({
+            //     title: 'Check out this post on Writeit',
+            //     text: 'I found this interesting post you might like',
+            //     url: window.location.href,
+            // });
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
