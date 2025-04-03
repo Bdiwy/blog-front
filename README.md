@@ -1,6 +1,6 @@
 # 🚀 Writeit - Social Media Platform (Frontend)
 
-![Writeit Logo](/imgs/logo.png)
+![Writeit Logo](/imgs/logo-cover.png)
 
 Writeit is a modern social media platform for content sharing and community engagement. This repository contains the frontend built with **HTML, CSS, Bootstrap, and JavaScript**.
 
