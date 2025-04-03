@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Account - Writeit</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .verification-card {
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .verification-icon {
+            font-size: 5rem;
+            color: #198754;
+            margin-bottom: 1.5rem;
+        }
+        .countdown {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #198754;
+        }
+        .resend-link {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .step-indicator {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        .step-active {
+            background-color: #198754;
+            color: white;
+        }
+        .step-inactive {
+            background-color: #e9ecef;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Progress Steps -->
+                <div class="d-flex justify-content-center mb-5">
+                    <div class="d-flex align-items-center">
+                        <div class="step-indicator step-active">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+                        <div class="me-3">Register</div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="step-indicator step-active">
+                            <span>2</span>
+                        </div>
+                        <div class="me-3">Verify</div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="step-indicator step-inactive">
+                            <span>3</span>
+                        </div>
+                        <div>Complete Profile</div>
+                    </div>
+                </div>
+
+                <!-- Verification Card -->
+                <div class="card verification-card mx-auto">
+                    <div class="card-body p-5 text-center">
+                        <div class="verification-icon">
+                            <i class="bi bi-envelope-check"></i>
+                        </div>
+                        <h2 class="mb-3">Verify Your Account</h2>
+                        <p class="text-muted mb-4">
+                            We've sent a verification link to <strong>user@example.com</strong>.
+                            Please check your inbox and click the link to verify your account.
+                        </p>
+                        
+                        <div class="alert alert-success" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Can't find the email? Check your spam folder.
+                        </div>
+                        
+                        <div class="my-4">
+                            <p class="mb-2">Didn't receive the email?</p>
+                            <p>
+                                <span id="countdown" class="countdown">02:00</span> remaining
+                                <span id="resendText"> | </span>
+                                <span class="resend-link text-success" id="resendLink">Resend Email</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success" onclick="window.location.href='complete-profile.html'">
+                                I've Verified My Email
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="window.location.href='index.html'">
+                                Return Home
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer for resend email
+        let timeLeft = 120; // 2 minutes in seconds
+        const countdownElement = document.getElementById('countdown');
+        const resendLink = document.getElementById('resendLink');
+        const resendText = document.getElementById('resendText');
+        
+        resendLink.style.display = 'none';
+        resendText.style.display = 'none';
+        
+        const timer = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            timeLeft--;
+            
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                countdownElement.style.display = 'none';
+                resendLink.style.display = 'inline';
+                resendText.style.display = 'inline';
+            }
+        }, 1000);
+        
+        resendLink.addEventListener('click', function() {
+            // Here you would call your backend to resend the verification email
+            alert('Verification email has been resent!');
+            timeLeft = 120;
+            countdownElement.style.display = 'inline';
+            resendLink.style.display = 'none';
+            resendText.style.display = 'none';
+            
+            const timer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                timeLeft--;
+                
+                if (timeLeft < 0) {
+                    clearInterval(timer);
+                    countdownElement.style.display = 'none';
+                    resendLink.style.display = 'inline';
+                    resendText.style.display = 'inline';
+                }
+            }, 1000);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

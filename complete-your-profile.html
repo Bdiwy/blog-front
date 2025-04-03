@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile - Writeit</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .avatar-option {
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        .avatar-option:hover {
+            transform: scale(1.05);
+        }
+        .avatar-option.selected {
+            border-color: #198754;
+            box-shadow: 0 0 10px rgba(25, 135, 84, 0.5);
+        }
+        .interest-tag {
+            cursor: pointer;
+            margin: 5px;
+        }
+        .interest-tag.selected {
+            background-color: #198754 !important;
+            color: white !important;
+        }
+        .progress {
+            height: 10px;
+        }
+        .form-section {
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Progress Bar -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="text-center mb-4">Complete Your Profile</h2>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" id="profileProgress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Completion Form -->
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+
+                        <!-- Avatar Selection Section -->
+                        <div class="form-section active" id="avatarSection">
+                            <h4 class="mb-4">Choose Your Avatar</h4>
+                            <div class="row text-center">
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/1.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="1">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/2.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="2">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/3.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="3">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/4.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="4">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/5.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="5">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/6.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="6">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/7.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="7">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/8.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="8">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/9.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="9">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/10.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="10">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/11.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="11">
+                                </div>
+                                <div class="col-4 col-md-3 mb-4">
+                                    <img src="/imgs/avatar/12.jpg" class="img-fluid rounded-circle avatar-option" width="100" data-avatar="12">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mt-4">
+                                <button class="btn btn-success" onclick="nextSection('avatarSection', 'personalSection')">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Personal Information Section -->
+                        <div class="form-section" id="personalSection">
+                            <h4 class="mb-4">Personal Information</h4>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <select class="form-select">
+                                        <option selected disabled>Select your gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                        <option value="prefer-not-to-say">Prefer not to say</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Age</label>
+                                    <input type="number" class="form-control" min="13" max="120">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Bio (Optional)</label>
+                                <textarea class="form-control" rows="3" placeholder="Tell us about yourself..."></textarea>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <button class="btn btn-outline-secondary" onclick="prevSection('personalSection', 'avatarSection')">Back</button>
+                                <button class="btn btn-success" onclick="nextSection('personalSection', 'interestsSection')">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Interests Section -->
+                        <div class="form-section" id="interestsSection">
+                            <h4 class="mb-4">Select Your Interests</h4>
+                            <p class="text-muted mb-4">Choose at least 3 interests to personalize your experience</p>
+                            
+                            <div class="d-flex flex-wrap">
+                                <span class="badge bg-light text-dark interest-tag">Technology</span>
+                                <span class="badge bg-light text-dark interest-tag">Programming</span>
+                                <span class="badge bg-light text-dark interest-tag">Design</span>
+                                <span class="badge bg-light text-dark interest-tag">Photography</span>
+                                <span class="badge bg-light text-dark interest-tag">Travel</span>
+                                <span class="badge bg-light text-dark interest-tag">Food</span>
+                                <span class="badge bg-light text-dark interest-tag">Fitness</span>
+                                <span class="badge bg-light text-dark interest-tag">Music</span>
+                                <span class="badge bg-light text-dark interest-tag">Art</span>
+                                <span class="badge bg-light text-dark interest-tag">Reading</span>
+                                <span class="badge bg-light text-dark interest-tag">Gaming</span>
+                                <span class="badge bg-light text-dark interest-tag">Movies</span>
+                                <span class="badge bg-light text-dark interest-tag">Science</span>
+                                <span class="badge bg-light text-dark interest-tag">Business</span>
+                                <span class="badge bg-light text-dark interest-tag">Sports</span>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mt-4">
+                                <button class="btn btn-outline-secondary" onclick="prevSection('interestsSection', 'personalSection')">Back</button>
+                                <button class="btn btn-success" onclick="completeProfile()">Complete Profile</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Avatar selection
+        document.querySelectorAll('.avatar-option').forEach(avatar => {
+            avatar.addEventListener('click', function() {
+                document.querySelectorAll('.avatar-option').forEach(a => a.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Interest selection
+        document.querySelectorAll('.interest-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+
+        // Form navigation
+        function nextSection(currentId, nextId) {
+            document.getElementById(currentId).classList.remove('active');
+            document.getElementById(nextId).classList.add('active');
+            updateProgressBar(nextId);
+        }
+
+        function prevSection(currentId, prevId) {
+            document.getElementById(currentId).classList.remove('active');
+            document.getElementById(prevId).classList.add('active');
+            updateProgressBar(prevId);
+        }
+
+        // Update progress bar
+        function updateProgressBar(currentSection) {
+            let progress = 25;
+            if (currentSection === 'personalSection') progress = 50;
+            if (currentSection === 'interestsSection') progress = 75;
+            document.getElementById('profileProgress').style.width = progress + '%';
+        }
+
+        // Complete profile
+        function completeProfile() {
+            // Here you would normally submit the form
+            alert('Profile completed successfully! Redirecting to your dashboard...');
+            // window.location.href = 'dashboard.html';
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
