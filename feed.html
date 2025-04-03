@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Feed - Writeit</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            height: 60px;
+            padding: 0.5rem 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            padding: 0;
+            line-height: 0;
+        }
+        .navbar-brand img {
+            height: 100px;
+            width: auto;
+            position: relative;
+        }
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.6rem;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .post-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .vote-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .vote-btn:hover {
+            transform: scale(1.2);
+        }
+        .upvote.active {
+            color: #0d6efd;
+        }
+        .downvote.active {
+            color: #dc3545;
+        }
+        .share-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .share-btn.active {
+            color: #198754;
+        }
+        .vote-count {
+            font-weight: bold;
+            text-align: center;
+            min-width: 20px;
+        }
+        .create-post-btn {
+            background-color: #f0f2f5;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            text-align: left;
+            width: 100%;
+        }
+        .create-post-btn:hover {
+            background-color: #e4e6e9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="/imgs/logo.png" alt="Writeit Logo" style="height: 100px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="feed.html">Feed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Explore</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="bi bi-bell-fill"></i>
+                            <span class="badge bg-danger notification-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="bi bi-chat-left-text-fill"></i>
+                            <span class="badge bg-danger notification-badge">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/imgs/avatar/3.jpg" class="profile-img">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Create Post -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <img src="/imgs/avatar/3.jpg" class="profile-img me-3">
+                            <button class="create-post-btn" data-bs-toggle="modal" data-bs-target="#createPostModal">
+                                What's on your mind, Ahmed?
+                            </button>
+                        </div>
+                        <hr class="my-2">
+                        <div class="row text-center">
+                            <div class="col">
+                                <button class="btn btn-light w-100">
+                                    <i class="bi bi-camera-fill text-danger me-2"></i> Photo
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-light w-100">
+                                    <i class="bi bi-link-45deg text-primary me-2"></i> Link
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-light w-100">
+                                    <i class="bi bi-emoji-smile text-warning me-2"></i> Feeling
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Posts -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="d-flex">
+                                <img src="/imgs/avatar/2.jpg" class="profile-img me-3">
+                                <div>
+                                    <h5 class="mb-0">Ahmed Bdiwy</h5>
+                                    <small class="text-muted">2 hours ago · <i class="bi bi-globe"></i></small>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-light rounded-circle">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <p class="mb-3">Just launched my new portfolio website! Check it out and let me know what you think. #webdevelopment #portfolio</p>
+                        
+                        <img src="/imgs/test.png" class="img-fluid rounded mb-3 w-100">
+                        
+                        <!-- Post Actions -->
+                        <div class="post-actions">
+                            <button class="vote-btn upvote" onclick="vote(this, 1)">
+                                <i class="bi bi-arrow-up"></i>
+                            </button>
+                            <span class="vote-count">42</span>
+                            <button class="vote-btn downvote" onclick="vote(this, -1)">
+                                <i class="bi bi-arrow-down"></i>
+                            </button>
+                            <button class="share-btn" onclick="sharePost(this)">
+                                <i class="bi bi-repeat"></i>
+                            </button>
+                            <a href="#" class="btn btn-success ms-auto">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="d-flex">
+                                <img src="/imgs/avatar/12.jpg" class="profile-img me-3">
+                                <div>
+                                    <h5 class="mb-0">Jane Smith</h5>
+                                    <small class="text-muted">5 hours ago · <i class="bi bi-people-fill"></i></small>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-light rounded-circle">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <p class="mb-3">Beautiful day for hiking! Nature always helps me clear my mind and get new ideas. 🏞️ #nature #inspiration</p>
+                        
+                        <img src="/imgs/test.png" class="img-fluid rounded mb-3 w-100">
+                        
+                        <!-- Post Actions -->
+                        <div class="post-actions">
+                            <button class="vote-btn upvote" onclick="vote(this, 1)">
+                                <i class="bi bi-arrow-up"></i>
+                            </button>
+                            <span class="vote-count">128</span>
+                            <button class="vote-btn downvote" onclick="vote(this, -1)">
+                                <i class="bi bi-arrow-down"></i>
+                            </button>
+                            <button class="share-btn" onclick="sharePost(this)">
+                                <i class="bi bi-repeat"></i>
+                            </button>
+                            <a href="#" class="btn btn-success ms-auto">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createPostModalLabel">Create Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex mb-3">
+                        <img src="/imgs/avatar/7309681.jpg" class="profile-img me-3">
+                        <div>
+                            <h6 class="mb-0">Ahmed Bdiwy</h6>
+                            <select class="form-select form-select-sm mt-1" style="width: auto; display: inline-block;">
+                                <option><i class="bi bi-globe"></i> Public</option>
+                                <option><i class="bi bi-people-fill"></i> Friends</option>
+                                <option><i class="bi bi-lock-fill"></i> Only me</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <textarea class="form-control border-0" rows="5" placeholder="What's on your mind?"></textarea>
+                    
+                    <div class="border rounded p-3 mt-3">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-2">Add to your post</h6>
+                            <div>
+                                <button class="btn btn-sm btn-light rounded-circle me-1">
+                                    <i class="bi bi-images text-success"></i>
+                                </button>
+                                <button class="btn btn-sm btn-light rounded-circle me-1">
+                                    <i class="bi bi-link-45deg text-primary"></i>
+                                </button>
+                                <button class="btn btn-sm btn-light rounded-circle me-1">
+                                    <i class="bi bi-emoji-smile text-warning"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success w-100">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Voting functionality
+        function vote(button, direction) {
+            const card = button.closest('.card');
+            const upvoteBtn = card.querySelector('.upvote');
+            const downvoteBtn = card.querySelector('.downvote');
+            const voteCount = card.querySelector('.vote-count');
+            
+            // Get current values
+            let currentVote = button.classList.contains('active') ? 0 : direction;
+            let currentCount = parseInt(voteCount.textContent);
+            
+            // Remove active classes
+            upvoteBtn.classList.remove('active');
+            downvoteBtn.classList.remove('active');
+            
+            // Update based on vote
+            if (currentVote === 1) {
+                upvoteBtn.classList.add('active');
+                voteCount.textContent = currentCount + 1;
+            } else if (currentVote === -1) {
+                downvoteBtn.classList.add('active');
+                voteCount.textContent = currentCount - 1;
+            } else {
+                // If clicking the same button again (undoing vote)
+                if (direction === 1) {
+                    voteCount.textContent = currentCount - 1;
+                } else {
+                    voteCount.textContent = currentCount + 1;
+                }
+            }
+        }
+        
+        // Share functionality
+        function sharePost(button) {
+            button.classList.toggle('active');
+            alert('Post shared successfully!');
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
