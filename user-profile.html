@@ -28,6 +28,25 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-item {
+            text-align: center;
+            cursor: pointer;
+        }
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #198754; /* Bootstrap success color */
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +87,28 @@
                         <img src="/imgs/avatar/7294811.jpg" class="rounded-circle mb-3" alt="Profile Image" style="width: 150px; height: 150px;">
                         <h2 class="card-title">Jane Doe</h2>
                         <p class="card-text text-muted">Member since April 1, 2025</p>
+                        
+                        <!-- Readers (Followers) and Writers (Following) Stats -->
+                        <div class="stats-container">
+                            <div class="stat-item" data-bs-toggle="modal" data-bs-target="#readersModal">
+                                <div class="stat-number">1.2K</div>
+                                <div class="stat-label">Readers</div>
+                            </div>
+                            <div class="stat-item" data-bs-toggle="modal" data-bs-target="#writersModal">
+                                <div class="stat-number">45</div>
+                                <div class="stat-label">Writers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">28</div>
+                                <div class="stat-label">Posts</div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-center gap-3 mb-3">
+                            <button class="btn btn-success">Follow</button>
+                            <button class="btn btn-outline-success">Message</button>
+                        </div>
+                        
                         <p class="card-text"><strong>Contact:</strong> jane.doe@example.com</p>
                         <p class="card-text"><strong>Social:</strong> <a href="#" class="text-success">Twitter</a> | <a href="#" class="text-success">Instagram</a></p>
                     </div>
@@ -90,7 +131,7 @@
                                 <small class="text-muted">By Jane Doe - April 1, 2025</small>
                             </div>
                         </div>
-                        <p class="card-text">This post now has an image! Bootstrap’s card component is super flexible.</p>
+                        <p class="card-text">This post now has an image! Bootstrap's card component is super flexible.</p>
                         <a href="#" class="btn btn-success">Read More</a>
                     </div>
                 </div>
@@ -108,6 +149,74 @@
                         <p class="card-text">A journey through the wilderness with stunning views.</p>
                         <a href="#" class="btn btn-success">Read More</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Readers Modal -->
+    <div class="modal fade" id="readersModal" tabindex="-1" aria-labelledby="readersModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="readersModalLabel">Jane's Readers</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <img src="/imgs/avatar/7309681.jpg" class="rounded-circle me-3" width="50" height="50">
+                            <div>
+                                <h6 class="mb-0">John Smith</h6>
+                                <small class="text-muted">Writer & Reader</small>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <img src="/imgs/avatar/7309681.jpg" class="rounded-circle me-3" width="50" height="50">
+                            <div>
+                                <h6 class="mb-0">Alice Johnson</h6>
+                                <small class="text-muted">Reader</small>
+                            </div>
+                        </a>
+                        <!-- More readers would be listed here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Writers Modal -->
+    <div class="modal fade" id="writersModal" tabindex="-1" aria-labelledby="writersModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="writersModalLabel">Writers Jane Follows</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <img src="/imgs/avatar/7309681.jpg" class="rounded-circle me-3" width="50" height="50">
+                            <div>
+                                <h6 class="mb-0">Mark Twain</h6>
+                                <small class="text-muted">Professional Writer</small>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <img src="/imgs/avatar/7309681.jpg" class="rounded-circle me-3" width="50" height="50">
+                            <div>
+                                <h6 class="mb-0">Ernest Hemingway</h6>
+                                <small class="text-muted">Novelist</small>
+                            </div>
+                        </a>
+                        <!-- More writers would be listed here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
